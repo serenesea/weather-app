@@ -1,0 +1,80 @@
+.App {
+  text-align: center;
+}
+
+
+/*
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+*/
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+/*/////////////////////////////////////////
+
+/*
+div img: hover {
+  background:white;
+  border:solid 1px white;
+  padding:15px;
+  padding-bottom:30px;
+  width:200px;
+  height:140px;
+  margin:5px;
+}
+*/
+.Image {
+  overflow:hidden;
+  width: 150px;
+  height:150px;
+  float:left;
+}
+
+.Image img {
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+}
+
+.Image img:hover{
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+.Temperature {
+  font-size: 44px;
+  float:left;
+  align-content: stretch;
+}
+.WeatherDesc {
+  float:left;
+}
+.ShortInfo {
+  border: solid black 1px;
+}
+.CityAndDate {
+  border: solid black 1px;
+}
+.GeneralInfo {
+  border: solid black 1px;
+}
+.WeatherInfo {
+  border: solid red 1px;
+}
+.City {
+  border: solid black 1px;
+}
+.Date {
+  border: solid black 1px;
+}
+
