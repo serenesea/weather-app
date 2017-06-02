@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.css";
-import { Navbar, Nav, Grid, Row, Col } from "react-bootstrap";
+import { Navbar, ListGroup, ListGroupItem, Grid, Row, Col } from "react-bootstrap";
+import injectTapEventPlugin from 'react-tap-event-plugin'
 /*
 import { createStore, combineReducers } from 'redux';
 */
+
+injectTapEventPlugin();
 
 
 const FIELDSNAME = [
@@ -22,9 +25,9 @@ class WeatherLine extends Component {
     render() {
         return (
             <div>
-                <div className="Description">
+                <ListGroupItem className="Description">
                     {this.props.desc}
-                </div>
+                </ListGroupItem>
                 <div className="Field">
                     {this.props.fields}
                 </div>
@@ -86,52 +89,55 @@ class WeatherDisplay extends Component {
         const iconPath = "img/set/"+weather.wx_icon.replace("gif","png");
         const date = new Date().toLocaleDateString();
         return (
-            <div>
-                    <div className="CityAndDate">
-                        <div className="City">
+            <div className="container">
+                    <Row className="CityAndDate">
+                        <Col md={6} className="City">
                             <h1> at latitude {weather.lat} and longitude {weather.lon}</h1>
-                        </div>
-                        <div className="Date">
+                        </Col>
+                        <Col md={6} className="Date">
                             <h1>{date}</h1>
-                        </div>
-                    </div>
+                        </Col>
+                    </Row>
 
-                    <div className="WeatherInfo">
-                        <div className="ShortInfo">
-                            <div className="Image"><img src={iconPath} alt={weather.wx_desc}/></div>
-                            <div className="WeatherDesc">{weather.wx_desc}</div>
-                            <div className="Temperature">{weather.temp_c}°</div>
-                        </div>
+                    <Row className="WeatherInfo">
+                        <Col md={4}>
+                            <div className="ShortInfo">
+                                <div className="Image"><img src={iconPath} alt={weather.wx_desc}/></div>
+                                <div className="WeatherDesc">{weather.wx_desc}</div>
+                                <div className="Temperature">{weather.temp_c}°</div>
+                            </div>
+                        </Col>
 
-                        <div className="GeneralInfo">
-                            <div>
-                                    <ul>
-                                    <div>
-                                        { FIELDSNAME.map(function (el, index) {
-                                            return (
-                                                <WeatherLine
-                                                    key={index}
-                                                    desc={el}/>
-                                            )
-                                        })
-                                        }
-                                    </div>
-                                    </ul>
-                                </div>
+                        <Col md={4} className="GeneralInfo">
+
+                            <ListGroup>
                                 <div>
-                                    <ul className="fields">
-                                        <li> {weather.cloudtotal_pct}%</li>
-                                        <li> {weather.dewpoint_c}°  </li>
-                                        <li> {weather.feelslike_c}°</li>
-                                        <li> {weather.humid_pct}%  </li>
-                                        <li> {weather.slp_in} inches</li>
-                                        <li> {weather.vis_km} kilometers</li>
-                                        <li> {weather.winddir_deg} degrees</li>
-                                        <li> {weather.windspd_kmh} km/h</li>
-                                    </ul>
+                                    { FIELDSNAME.map(function (el, index) {
+                                        return (
+                                            <WeatherLine
+                                                key={index}
+                                                desc={el}/>
+                                                )
+                                        })
+                                    }
                                 </div>
-                        </div>
-                    </div>
+                            </ListGroup>
+                        </Col>
+                        <Col md={4}>
+                            <div>
+                                <ListGroup className="fields">
+                                    <ListGroupItem> {weather.cloudtotal_pct}%</ListGroupItem>
+                                    <ListGroupItem> {weather.dewpoint_c}°  </ListGroupItem>
+                                    <ListGroupItem> {weather.feelslike_c}°</ListGroupItem>
+                                    <ListGroupItem> {weather.humid_pct}%  </ListGroupItem>
+                                    <ListGroupItem> {weather.slp_in} inches</ListGroupItem>
+                                    <ListGroupItem> {weather.vis_km} kilometers</ListGroupItem>
+                                    <ListGroupItem> {weather.winddir_deg} degrees</ListGroupItem>
+                                    <ListGroupItem> {weather.windspd_kmh} km/h</ListGroupItem>
+                                </ListGroup>
+                            </div>
+                        </Col>
+                    </Row>
             </div>
         );
     }

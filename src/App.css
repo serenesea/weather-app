@@ -77,4 +77,8 @@ div img: hover {
 .Date {
   border: solid black 1px;
 }
+.container {
+  padding: 50px;
+  margin: 10px;
+}
 
