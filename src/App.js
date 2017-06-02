@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.css";
-import { Navbar, NavItem, Nav, Grid, Row, Col } from "react-bootstrap";
+import { Navbar, Nav, Grid, Row, Col } from "react-bootstrap";
 /*
 import { createStore, combineReducers } from 'redux';
 */
@@ -51,7 +51,9 @@ class WeatherDisplay extends Component {
         super();
         this.state = {
             weatherData: null,
+/*
             seconds: 0
+*/
         };
     }
     componentDidMount(){
@@ -63,13 +65,15 @@ class WeatherDisplay extends Component {
             fetch(URL).then(res => res.json()).then(json => {
                 this.setState({weatherData: json});
             });
-            let timer = setInterval(this.tick,10000)
+/*
+        let timer = setInterval(this.tick, 10000)
+*/
 
     }
-    tick() {
+   /* tick() {
         this.setState({ seconds: this.state.seconds + 1 });
         console.log(this.state.seconds);
-    }
+    }*/
 
     componentWillUnmount() {
         clearInterval(this.timer);
