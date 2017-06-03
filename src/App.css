@@ -54,13 +54,15 @@ div img: hover {
 .Temperature {
   font-size: 44px;
   float:left;
-  align-content: stretch;
+  margin-top: 30px;
 }
 .WeatherDesc {
   float:left;
 }
 .ShortInfo {
-  border: solid black 1px;
+  margin-top: 50px;
+  height: 250px;
+  border:  solid black 1px;
 }
 .CityAndDate {
   border: solid black 1px;
@@ -80,5 +82,8 @@ div img: hover {
 .container {
   padding: 50px;
   margin: 10px;
+}
+ListGroupItem {
+  color: red;
 }
 
