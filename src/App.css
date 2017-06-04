@@ -1,89 +1,117 @@
 .App {
   text-align: center;
+  background-color: lightgrey;
+}
+.CityAndDate {
+  margin: 0;
+  padding: 0;
+  margin-left: 5%;
+}
+.City {
+  font-size: 24px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color:darkslategray;
+}
+.Date {
+  font-size: 18px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: darkgrey;
+}
+.ShortInfo {
 }
 
-
-/*
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-*/
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-/*/////////////////////////////////////////
-
-/*
-div img: hover {
-  background:white;
-  border:solid 1px white;
-  padding:15px;
-  padding-bottom:30px;
-  width:200px;
-  height:140px;
-  margin:5px;
-}
-*/
 .Image {
+  position: absolute;
   overflow:hidden;
-  width: 150px;
-  height:150px;
+  left: 20%;
+  top: 20px;
+  width: 200px;
+  height: 200px;
   float:left;
 }
 
-.Image img {
+.Image > img {
   -moz-transition: all 1s ease-out;
   -o-transition: all 1s ease-out;
   -webkit-transition: all 1s ease-out;
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    z-index: 1;
+    margin: auto;
+    top: 0; right: 0; bottom: 0; left: 0;
 }
 
 .Image img:hover{
-  -webkit-transform: scale(1.1);
-  -moz-transform: scale(1.1);
-  -o-transform: scale(1.1);
-}
-.Temperature {
-  font-size: 44px;
-  float:left;
-  margin-top: 30px;
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -o-transform: scale(1.5);
 }
 .WeatherDesc {
-  float:left;
-}
-.ShortInfo {
-  margin-top: 50px;
-  height: 250px;
-  border:  solid black 1px;
-}
-.CityAndDate {
-  border: solid black 1px;
-}
-.GeneralInfo {
-  border: solid black 1px;
-}
-.WeatherInfo {
-  border: solid red 1px;
-}
-.City {
-  border: solid black 1px;
-}
-.Date {
-  border: solid black 1px;
-}
-.container {
-  padding: 50px;
-  margin: 10px;
-}
-ListGroupItem {
-  color: red;
+  position: absolute;
+  top: 5%;
+  left: 140px;
+  color: ghostwhite;
+  font-size: 24px;
+  font-weight: bold;
+  float: left;
+  z-index: 1;
 }
 
+.Temperature {
+  position: absolute;
+  top: 150px;
+  left: 20%;
+  font-size: 80px;
+  align-content: stretch;
+  float:right;
+  color: darkgrey;
+}
+
+.Temperature:hover {
+  color: darksalmon;
+}
+
+.GeneralInfo {
+  font-size: 20px;
+  padding-top: 15px;
+}
+
+.GeneralInfo2, .GeneralInfo{
+  position: absolute;
+  top: 10vh;
+}
+.WeatherInfo {
+  position	: relative;
+  height: 38em;
+  width: 100%;
+  background-color: grey;
+  border-radius: 10px;
+  box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+}
+.fields, .fields2 {
+  font-size: 20px;
+  padding: 5px;
+  border-collapse: collapse;
+  font-family: sans-serif;
+  color: white;
+}
+
+.fields2 {
+  text-align: left;
+  padding-top: 20px;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+}
+
+.Field {
+  text-align: left;
+}
+
+.Description {
+  text-align: left;
+}

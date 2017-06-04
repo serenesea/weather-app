@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.css";
-import { Navbar, ListGroup, ListGroupItem, Grid, Row, Col, ProgressBar } from "react-bootstrap";
+import { Navbar, Row, Col, ProgressBar } from "react-bootstrap";
 
 
 /*const FIELDSNAME = [
@@ -24,20 +24,17 @@ const FIELDSNAME = [
     "Maximum mean wind speed"]
 
 //component, showing single line of weather info
-/*class WeatherLine extends React.Component {
+class WeatherLine extends React.Component {
     render() {
         return (
             <div>
-                <ListGroupItem className="Description">
+                <div className="Description">
                     {this.props.desc}
-                </ListGroupItem>
-                <div className="Field">
-                    {this.props.fields}
                 </div>
             </div>
         );
     }
-}*/
+}
 //component-header
 class Header extends React.Component {
     render(){
@@ -77,13 +74,13 @@ class WeatherDisplay extends React.Component {
     //Use constant url for getting data about weather for today in Tel-Aviv
 
     componentDidMount(){
-        URL = "http://api.weatherunlocked.com/api/trigger/-7.33,72.42/" +
+        URL = "http://api.weatherunlocked.com/api/trigger/32.08,34.78/" +
             "current temperature gt 16 includecurrent?" +
             "app_id=30cd5553&app_key=18c2693430a2fc4f7d628166efefa475";
         fetch(URL).then(res => res.json()).then(json => {
             this.setState({weatherData: json})
         });
-        this.timer = setInterval(this.getData.bind(this), 10000);
+        this.timer = setInterval(this.getData.bind(this), 30000);
     }
 
     //Function for getting data from API
@@ -96,50 +93,95 @@ class WeatherDisplay extends React.Component {
    }
 
     //Clear interval when components is unmounted/deleted
-    componentWillUnmount() {
+
+        componentWillUnmount() {
         clearInterval(this.timer);
     };
 
     render() {
 
         const weatherData = this.state.weatherData;
-        /*if (weatherData == null) return (                                                              //
+        if (weatherData == null) return (                                                              //
             <div>
                 <div>Loading...</div>
                 <ProgressBar active now={45} /></div>
-        );*/
+        );
         const weather = weatherData!= null ? weatherData.CurrentWeather : null;
 
         console.log("render");
         console.log(weather);
-       /* if(weatherData != null) {
-            const iconPath = "img/set/"+weather.wx_icon.replace("gif","png");
-        }
 
-        const date = new Date().toLocaleDateString();*/
+        const iconPath = "img/set/"+weather.wx_icon.replace("gif","png");
+
+
+        const date = new Date().toLocaleDateString();
         return (
-            <div>
-                {Boolean(weather!=null) ?
-                    <div>
-                        <h4> Уже прошло {this.state.seconds} секунд </h4>
-                        <ul className="fields">
-                            <li> {weather.cloudtotal_pct}%</li>
-                            <li> {weather.dewpoint_c}°</li>
-                            <li> {weather.feelslike_c}°</li>
-                            <li> {weather.humid_pct}%</li>
-                            <li> {weather.slp_in} inches</li>
-                            <li> {weather.vis_km} kilometers</li>
-                            <li> {weather.winddir_deg} degrees</li>
-                            <li> {weather.windspd_kmh} km/h</li>
-                        </ul>
+                    <div className="container">
+                        {(weather != null) ?
+                            <div>
+                                <Row className="CityAndDate">
+                                    <Col md={6} sx={12} className="City">
+                                        <h1> Weather in Tel-Aviv</h1>
+                                        <h1>today {date}</h1>
+
+                                    </Col>
+                                    <Col md={6} sx={12} className="Date">
+                                        <h1>today {date}</h1>
+                                    </Col>
+                                </Row>
+                                <div className="WeatherInfo">
+                                    <Row>
+                                        <Col md={4}>
+                                            <div className="ShortInfo">
+                                                <div className="Image"><img src={iconPath} alt={weather.wx_desc}/></div>
+                                                <div className="WeatherDesc">{weather.wx_desc}</div>
+                                                <div className="Temperature">{weather.temp_c}°</div>
+                                            </div>
+                                        </Col>
+
+                                        <Col md={4} sm={6} sx={12}className="GeneralInfo">
+
+                                            <div>
+                                                <div className="fields">
+                                                    { FIELDSNAME.map(function (el, index) {
+                                                        return (
+                                                            <WeatherLine
+                                                                key={index}
+                                                                desc={el}/>
+                                                        )
+                                                    })
+                                                    }
+                                                </div>
+                                            </div>
+                                        </Col>
+                                        <Col md={4} sm={6} sx={12}className="GeneralInfo2">
+                                            <div>
+                                                <div className="fields2">
+                                                    <ul>
+                                                        <div> {weather.cloudtotal_pct}%</div>
+                                                        <div> {weather.dewpoint_c}° </div>
+                                                        <div> {weather.feelslike_c}°</div>
+                                                        <div> {weather.humid_pct}% </div>
+                                                        <div> {weather.slp_mb} millibars</div>
+                                                        <div> {weather.vis_km} km</div>
+                                                        <div> {weather.winddir_deg} degrees</div>
+                                                        <div> {weather.windspd_kmh} km/h</div>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            </div>
+                            :
+                            <div>
+                                <h4> Уже прошло {this.state.seconds} seconds </h4>
+                                <h4> Something's going wrong </h4>
+                                <ProgressBar active now={45}/>
+                                <WeatherLoading />
+                            </div>
+                        }
                     </div>
-                    :
-                    <div>
-                        <h4> Уже прошло {this.state.seconds} секунд </h4>
-                        <WeatherLoading />
-                    </div>
-                }
-            </div>
         );
     }
 }
