@@ -2,23 +2,37 @@
   text-align: center;
   background-color: lightgrey;
 }
+
+.container {
+  margin: 0;
+  padding: 0;
+}
+
 .CityAndDate {
   margin: 0;
   padding: 0;
   margin-left: 5%;
+  border: 1px solid black;
 }
+
 .City {
   font-size: 24px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   color:darkslategray;
 }
+
 .Date {
-  font-size: 18px;
+  position:relative;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: darkgrey;
+  top: 10px;
+  border: 1px solid black;
 }
+
 .ShortInfo {
+  position:relative;
+  float:left;
 }
 
 .Image {
@@ -35,36 +49,30 @@
   -moz-transition: all 1s ease-out;
   -o-transition: all 1s ease-out;
   -webkit-transition: all 1s ease-out;
-    max-width: 100%;
-    max-height: 100%;
-    position: absolute;
-    z-index: 1;
-    margin: auto;
-    top: 0; right: 0; bottom: 0; left: 0;
+  position: absolute;
+  margin: auto;
+  top: 0; right: 0; bottom: 0; left: 0;
 }
 
 .Image img:hover{
-  -webkit-transform: scale(1.5);
-  -moz-transform: scale(1.5);
-  -o-transform: scale(1.5);
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  -o-transform: scale(1.3);
 }
+
 .WeatherDesc {
-  position: absolute;
-  top: 5%;
+  position:relative;
+  top: 10px;
   left: 140px;
   color: ghostwhite;
   font-size: 24px;
   font-weight: bold;
-  float: left;
-  z-index: 1;
 }
 
 .Temperature {
-  position: absolute;
-  top: 150px;
-  left: 20%;
+  position: relative;
+  left: 120%;
   font-size: 80px;
-  align-content: stretch;
   float:right;
   color: darkgrey;
 }
@@ -74,14 +82,12 @@
 }
 
 .GeneralInfo {
-  font-size: 20px;
-  padding-top: 15px;
+  position: relative;
+  top: 5vh;
+  left: 100px;
+  text-align: left;
 }
 
-.GeneralInfo2, .GeneralInfo{
-  position: absolute;
-  top: 10vh;
-}
 .WeatherInfo {
   position	: relative;
   height: 38em;
@@ -90,28 +96,15 @@
   border-radius: 10px;
   box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
 }
-.fields, .fields2 {
+
+.fields {
+
+}
+
+.Description {
   font-size: 20px;
   padding: 5px;
   border-collapse: collapse;
   font-family: sans-serif;
   color: white;
-}
-
-.fields2 {
-  text-align: left;
-  padding-top: 20px;
-}
-
-.container {
-  margin: 0;
-  padding: 0;
-}
-
-.Field {
-  text-align: left;
-}
-
-.Description {
-  text-align: left;
 }
