@@ -19,8 +19,9 @@ const FIELDS = [
     {desc:"Direction wind is coming from",measure:"degrees"},
     {desc:"Maximum mean wind speed",measure:"km/h"}]
 
-//component for single line of weather info
+//Component for single line of weather info
 class WeatherLine extends React.Component {
+
     render() {
         return (
             <div>
@@ -32,6 +33,7 @@ class WeatherLine extends React.Component {
     }
 }
 class Header extends React.Component {
+
     render(){
         return(
             <Navbar>
@@ -47,6 +49,7 @@ class Header extends React.Component {
 //Component for showing loading process if weather==nul, ex.at the start of App
 
 class DataLoading extends React.Component {
+
     render(){
         return(
             <div>
@@ -57,13 +60,13 @@ class DataLoading extends React.Component {
     }
 }
 
-//
+//Component to display data from API
 class WeatherDisplay extends React.Component {
+
     constructor() {
         super();
         this.state = {                              //initialize state of component here
             weatherData: null,
-            seconds: 0
         };
     }
 
@@ -78,10 +81,11 @@ class WeatherDisplay extends React.Component {
         }).catch(error => {
             console.log('error', error)
         });
-        this.timer = setInterval(this.getData.bind(this), 10000);
+        this.timer = setInterval(this.getData.bind(this), 60*1000);
     }
 
     getData() {
+
         fetch(URL).then(res => res.json()).then(json => {
             this.setState({weatherData: json})
         }).catch(error => {
@@ -92,6 +96,7 @@ class WeatherDisplay extends React.Component {
     //Clear interval when components is unmounted/deleted
 
     componentWillUnmount() {
+
         clearInterval(this.timer);
     };
 
@@ -106,12 +111,9 @@ class WeatherDisplay extends React.Component {
         const weather = weatherData!= null ? weatherData.CurrentWeather : null;
         const iconPath = "img/set/"+weather.wx_icon.replace("gif","png");
         const date = new Date().toLocaleDateString();
-        console.log("render");
-        console.log(weather);
 
-
-        //parse json.data into auxiliary array and together with elements from array FIELDS
-        // push it into weatherInfoArray
+        //parse json.data into auxiliary array and then combining it whis array of objects FIELDS
+        // push into weatherInfoArray
 
         let arr = [weather.cloudtotal_pct, weather.dewpoint_c, weather.feelslike_c,
             weather.humid_pct,weather.slp_mb,weather.vis_km, weather.winddir_deg, weather.windspd_kmh];
@@ -127,19 +129,18 @@ class WeatherDisplay extends React.Component {
                 {
                     weather != null &&
                     <div>
+
                         <Row className="CityAndDate">
                             <Col md={6} xs={12} className="City">
                                 <h1> Weather in Tel-Aviv</h1>
-                                <h1>today {date}</h1>
-
                             </Col>
                             <Col md={6} xs={12} className="Date">
-                                <h1>Now {date.time}</h1>
+                                <h3>today {date}</h3>
                             </Col>
                         </Row>
+
                         <Row>
                             <div className="WeatherInfo">
-
                                 <Col md={4}>
                                     <div className="ShortInfo">
                                         <div className="Image"><img src={iconPath} alt={weather.wx_desc}/></div>
@@ -149,10 +150,11 @@ class WeatherDisplay extends React.Component {
                                 </Col>
 
                                 <Col md={8} xs={12} className="GeneralInfo">
+
                                     {/*Use key==index when rendering collection of elements inside a component
                                      to give the elements a stable identity*/}
-                                    <div>
-                                        <div className="fields">
+
+                                        <div>
                                             { weatherInfo.map(function (el, index) {
                                                 return (
                                                     <WeatherLine
@@ -160,22 +162,20 @@ class WeatherDisplay extends React.Component {
                                                         desc={el.desc}
                                                         val={el.val}
                                                         measure={el.measure}/>
-                                                )
-                                            })
+                                                    )
+                                                })
                                             }
                                         </div>
-                                    </div>
                                 </Col>
                             </div>
                         </Row>
                     </div>
                 }
             </div>
-
         )
     }
 }
-//Main component
+//Main component App
 class App extends React.Component {
     constructor() {
         super();
