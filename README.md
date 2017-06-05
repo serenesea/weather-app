@@ -4,9 +4,9 @@ App on React JS
 ## Description:
 Application that shows current weather in Tel-Aviv.
 
-## How to Run a Project:
+## How to Run the Project:
 
-- Download or clone a project to your computer.
+- Download or clone the project to your computer.
 - In the project directory, in the development mode run command:  `npm start` or `yarn start` if you use Yarn package.
 - Open http://localhost:3000 to view it in the browser
 
