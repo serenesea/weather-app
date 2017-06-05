@@ -1,7 +1,7 @@
 # weather-app
 App on React JS
 
-# Description:
+## Description:
 Application that shows current weather in Tel-Aviv.
 
 ## How to Run a Project:
